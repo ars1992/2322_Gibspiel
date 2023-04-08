@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
+
 public class Gibspiel {
+    public static Spielbrett spielbrett = new Spielbrett();
 
     /*
      * Ein Spiel für 2 Spieler.
@@ -29,19 +31,24 @@ public class Gibspiel {
         System.out.print("Name des Spieler 1: ");
         String name = eingabe.next();
         Spieler spieler1 = new MenschSpieler(name);
+
+        Spieler spieler2 = new ComputerSpieler1();
+
+        /*
         System.out.print("Name des Spieler 2: ");
         name = eingabe.next();
         Spieler spieler2 = new MenschSpieler(name);
+         */
 
-        Spielbrett spielbrett = new Spielbrett();
+
         spielbrett.startSpiel();
         while (true) {
-            if (spielzug(spielbrett, spieler1)) break;
-            if (spielzug(spielbrett, spieler2)) break;
+            if (spielzug(spieler1)) break;
+            if (spielzug(spieler2)) break;
         }
     }
 
-    public static boolean spielzug(Spielbrett spielbrett, Spieler spieler1){
+    public static boolean spielzug(Spieler spieler1){
         System.out.print("Steine auf dem Brett: ");
         System.out.println(spielbrett.getAktuelleAnzahlSteine());
 
@@ -56,4 +63,5 @@ public class Gibspiel {
         }
         return false;
     }
+
 }
