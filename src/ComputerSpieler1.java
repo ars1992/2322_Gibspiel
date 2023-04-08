@@ -1,9 +1,9 @@
 public class ComputerSpieler1 extends Spieler{
 
-    public ComputerSpieler1() {
-        super("Computer");
-    }
 
+    public ComputerSpieler1(String name) {
+        super("Computer " + name);
+    }
 
     public int steineSetzen() {
         System.out.println("Am Zug: Spieler " + getName());

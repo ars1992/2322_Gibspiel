@@ -26,27 +26,15 @@ public class Gibspiel {
      * - Spielbrett
      */
     public static void main(String[] args) {
-        spielerAnzahl();
-
-        // Erster Setup für zwei menschliche Spieler
-        Scanner eingabe = new Scanner(System.in);
-        System.out.print("Name des Spieler 1: ");
-        String name = eingabe.next();
-        Spieler spieler1 = new MenschSpieler(name);
-
-        Spieler spieler2 = new ComputerSpieler1();
-
-        /*
-        System.out.print("Name des Spieler 2: ");
-        name = eingabe.next();
-        Spieler spieler2 = new MenschSpieler(name);
-         */
+        Spieler[] spieler = gegenspielerBestimmen();
 
 
         spielbrett.startSpiel();
+        loop:
         while (true) {
-            if (spielzug(spieler1)) break;
-            if (spielzug(spieler2)) break;
+            for (int i = 0; i < spieler.length; i++)
+                if (spielzug(spieler[i])) break loop;
+
         }
     }
 
@@ -68,12 +56,35 @@ public class Gibspiel {
 
     public static Spieler[] spielerAnzahl(){
         Scanner eingabe = new Scanner(System.in);
+        int anzahl = 3;
         int i;
         do{
-            System.out.println("Wählen Sie die Anzahl der Spieler");
+            System.out.println("Wählen Sie die Anzahl der Spieler: ");
             i = eingabe.nextInt();
-        }while (i > 2 || i < 0);
+        }while (i > anzahl || i < 0);
         return new Spieler[i];
+    }
+
+    public static String namensgebung(int i){
+        Scanner eingabe = new Scanner(System.in);
+        System.out.println("Name des Spielers" + (i +1));
+        return eingabe.nextLine();
+    }
+
+    public static Spieler[] gegenspielerBestimmen(){
+        Scanner eingabe = new Scanner(System.in);
+        Spieler[] listeDerSpieler = spielerAnzahl();
+        for (int i = 0; i < listeDerSpieler.length; i++) {
+            System.out.println("Wählen Sie Spieler" + (i + 1));
+            System.out.println("1 - KI Einfach");
+            System.out.println("2 - Mensch");
+            int a = eingabe.nextInt();
+            if (a == 1 || a == 2) {
+                if (a == 1) listeDerSpieler[i] = new ComputerSpieler1(namensgebung(i));
+                else listeDerSpieler[i] = new MenschSpieler(namensgebung(i));
+            } else i--;
+        }
+        return listeDerSpieler;
     }
 
 }
