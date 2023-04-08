@@ -28,7 +28,6 @@ public class Gibspiel {
     public static void main(String[] args) {
         Spieler[] spieler = gegenspielerBestimmen();
 
-
         spielbrett.startSpiel();
         loop:
         while (true) {
@@ -77,12 +76,15 @@ public class Gibspiel {
         for (int i = 0; i < listeDerSpieler.length; i++) {
             System.out.println("Wählen Sie Spieler" + (i + 1));
             System.out.println("1 - KI Einfach");
-            System.out.println("2 - Mensch");
+            System.out.println("2 - Ki Mittel");
+            System.out.println("3 - Mensch");
             int a = eingabe.nextInt();
-            if (a == 1 || a == 2) {
-                if (a == 1) listeDerSpieler[i] = new ComputerSpieler1(namensgebung(i));
-                else listeDerSpieler[i] = new MenschSpieler(namensgebung(i));
-            } else i--;
+            switch (a){
+                case 1 -> listeDerSpieler[i] = new ComputerSpieler1(namensgebung(i));
+                case 2 -> listeDerSpieler[i] = new ComputerSpieler2(namensgebung(i));
+                case 3 -> listeDerSpieler[i] = new MenschSpieler(namensgebung(i));
+                default -> i--;
+            }
         }
         return listeDerSpieler;
     }
