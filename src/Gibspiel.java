@@ -26,6 +26,8 @@ public class Gibspiel {
      * - Spielbrett
      */
     public static void main(String[] args) {
+        spielerAnzahl();
+
         // Erster Setup für zwei menschliche Spieler
         Scanner eingabe = new Scanner(System.in);
         System.out.print("Name des Spieler 1: ");
@@ -62,6 +64,16 @@ public class Gibspiel {
             return true;
         }
         return false;
+    }
+
+    public static Spieler[] spielerAnzahl(){
+        Scanner eingabe = new Scanner(System.in);
+        int i;
+        do{
+            System.out.println("Wählen Sie die Anzahl der Spieler");
+            i = eingabe.nextInt();
+        }while (i > 2 || i < 0);
+        return new Spieler[i];
     }
 
 }
