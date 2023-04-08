@@ -36,30 +36,24 @@ public class Gibspiel {
         Spielbrett spielbrett = new Spielbrett();
         spielbrett.startSpiel();
         while (true) {
-            System.out.print("Steine auf dem Brett: ");
-            System.out.println(spielbrett.getAktuelleAnzahlSteine());
-
-            int anzahlSteine;
-            do {
-                anzahlSteine = spieler1.steineSetzen();
-            } while ( ! spielbrett.macheZug( anzahlSteine ) );
-
-            if (spielbrett.hatGewonnen()) {
-                System.out.println(spieler1.getName() + " hat gewonnen");
-                break;
-            }
-
-            System.out.print("Steine auf dem Brett: ");
-            System.out.println(spielbrett.getAktuelleAnzahlSteine());
-
-            do {
-                anzahlSteine = spieler2.steineSetzen();
-            } while ( ! spielbrett.macheZug( anzahlSteine ) );
-
-            if (spielbrett.hatGewonnen()) {
-                System.out.println(spieler2.getName() + " hat gewonnen");
-                break;
-            }
+            if (spielzug(spielbrett, spieler1)) break;
+            if (spielzug(spielbrett, spieler2)) break;
         }
+    }
+
+    public static boolean spielzug(Spielbrett spielbrett, Spieler spieler1){
+        System.out.print("Steine auf dem Brett: ");
+        System.out.println(spielbrett.getAktuelleAnzahlSteine());
+
+        int anzahlSteine;
+        do {
+            anzahlSteine = spieler1.steineSetzen();
+        } while ( ! spielbrett.macheZug( anzahlSteine ) );
+
+        if (spielbrett.hatGewonnen()) {
+            System.out.println(spieler1.getName() + " hat gewonnen");
+            return true;
+        }
+        return false;
     }
 }
