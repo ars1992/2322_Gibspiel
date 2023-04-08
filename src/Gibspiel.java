@@ -26,7 +26,8 @@ public class Gibspiel {
      * - Spielbrett
      */
     public static void main(String[] args) {
-        Spieler[] spieler = gegenspielerBestimmen();
+        //Spieler[] spieler = gegenspielerBestimmen();
+        Spieler[] spieler = test();
 
         spielbrett.startSpiel();
         loop:
@@ -64,6 +65,12 @@ public class Gibspiel {
         return new Spieler[i];
     }
 
+    public static String namensgebung(String stufe, int i){
+        Scanner eingabe = new Scanner(System.in);
+        System.out.println("Name des Spielers" + (i +1));
+        return stufe + " " + eingabe.nextLine();
+    }
+
     public static String namensgebung(int i){
         Scanner eingabe = new Scanner(System.in);
         System.out.println("Name des Spielers" + (i +1));
@@ -77,16 +84,22 @@ public class Gibspiel {
             System.out.println("Wählen Sie Spieler" + (i + 1));
             System.out.println("1 - KI Einfach");
             System.out.println("2 - Ki Mittel");
-            System.out.println("3 - Mensch");
+            System.out.println("3 - KI Schwer");
+            System.out.println("4 - Mensch");
             int a = eingabe.nextInt();
             switch (a){
-                case 1 -> listeDerSpieler[i] = new ComputerSpieler1(namensgebung(i));
-                case 2 -> listeDerSpieler[i] = new ComputerSpieler2(namensgebung(i));
-                case 3 -> listeDerSpieler[i] = new MenschSpieler(namensgebung(i));
+                case 1 -> listeDerSpieler[i] = new ComputerSpielerEinfach(namensgebung(i));
+                case 2 -> listeDerSpieler[i] = new ComputerSpielerMittel(namensgebung(i));
+                case 3 -> listeDerSpieler[i] = new ComputerSpielerSchwer(namensgebung(i));
+                case 4 -> listeDerSpieler[i] = new MenschSpieler(namensgebung(i));
                 default -> i--;
             }
         }
         return listeDerSpieler;
+    }
+
+    public static Spieler[] test(){
+        return new Spieler[]{new ComputerSpielerMittel("a"), new ComputerSpielerSchwer("b")};
     }
 
 }
