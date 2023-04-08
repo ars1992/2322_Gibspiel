@@ -25,9 +25,9 @@ public class Gibspiel {
      *   - ComputerSpieler
      * - Spielbrett
      */
+
     public static void main(String[] args) {
-        //Spieler[] spieler = gegenspielerBestimmen();
-        Spieler[] spieler = test();
+        Spieler[] spieler = gegenspielerBestimmen();
 
         spielbrett.startSpiel();
         loop:
@@ -97,9 +97,4 @@ public class Gibspiel {
         }
         return listeDerSpieler;
     }
-
-    public static Spieler[] test(){
-        return new Spieler[]{new ComputerSpielerMittel("a"), new ComputerSpielerSchwer("b")};
-    }
-
 }
