@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 
 public class Gibspiel {
-    public static Spielbrett spielbrett = new Spielbrett();
 
     /*
      * Ein Spiel für 2 Spieler.
@@ -26,6 +25,7 @@ public class Gibspiel {
      * - Spielbrett
      */
 
+    public static Spielbrett spielbrett = new Spielbrett();
     public static void main(String[] args) {
         Spieler[] spieler = gegenspielerBestimmen();
 
@@ -61,15 +61,10 @@ public class Gibspiel {
         do{
             System.out.println("Wählen Sie die Anzahl der Spieler: ");
             i = eingabe.nextInt();
-        }while (i > anzahl || i < 0);
+        }while (i > anzahl || i <= 0);
         return new Spieler[i];
     }
 
-    public static String namensgebung(String stufe, int i){
-        Scanner eingabe = new Scanner(System.in);
-        System.out.println("Name des Spielers" + (i +1));
-        return stufe + " " + eingabe.nextLine();
-    }
 
     public static String namensgebung(int i){
         Scanner eingabe = new Scanner(System.in);
