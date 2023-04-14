@@ -24,7 +24,7 @@ public class Gibspiel {
      *   - ComputerSpieler
      * - Spielbrett
      */
-
+    public static int spielerAnzahl = 3;
     public static Spielbrett spielbrett = new Spielbrett();
     public static void main(String[] args) {
         Spieler[] spieler = gegenspielerBestimmen();
@@ -54,14 +54,13 @@ public class Gibspiel {
         return false;
     }
 
-    public static Spieler[] spielerAnzahl(){
+    public static Spieler[] setzeSpielerAnzahl(){
         Scanner eingabe = new Scanner(System.in);
-        int anzahl = 3;
         int i;
         do{
-            System.out.println("Wählen Sie die Anzahl der Spieler: ");
+            System.out.println("Wählen Sie die Anzahl der Spieler (0-" + spielerAnzahl + ") : ");
             i = eingabe.nextInt();
-        }while (i > anzahl || i <= 0);
+        }while (i > spielerAnzahl || i <= 0);
         return new Spieler[i];
     }
 
@@ -74,7 +73,7 @@ public class Gibspiel {
 
     public static Spieler[] gegenspielerBestimmen(){
         Scanner eingabe = new Scanner(System.in);
-        Spieler[] listeDerSpieler = spielerAnzahl();
+        Spieler[] listeDerSpieler = setzeSpielerAnzahl();
         for (int i = 0; i < listeDerSpieler.length; i++) {
             System.out.println("Wählen Sie Spieler" + (i + 1));
             System.out.println("1 - KI Einfach");
