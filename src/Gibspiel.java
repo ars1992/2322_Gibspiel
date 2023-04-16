@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -57,10 +58,15 @@ public class Gibspiel {
     }
 
     public static Spieler[] setzeSpielerAnzahl(Scanner eingabe){
-        int i;
+        int i = 0;
         do{
             System.out.println("Wählen Sie die Anzahl der Spieler (1-" + spielerAnzahl + ") : ");
-            i = eingabe.nextInt();
+            try{
+                i = eingabe.nextInt();
+            } catch (InputMismatchException e){
+                eingabe.next();
+                System.out.println("Fehlerhafte Eingabe");
+            }
         }while (i > spielerAnzahl || i <= 0);
         return new Spieler[i];
     }
