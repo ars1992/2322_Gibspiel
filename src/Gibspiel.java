@@ -59,15 +59,14 @@ public class Gibspiel {
     public static Spieler[] setzeSpielerAnzahl(Scanner eingabe){
         int i;
         do{
-            System.out.println("Wählen Sie die Anzahl der Spieler (0-" + spielerAnzahl + ") : ");
+            System.out.println("Wählen Sie die Anzahl der Spieler (1-" + spielerAnzahl + ") : ");
             i = eingabe.nextInt();
         }while (i > spielerAnzahl || i <= 0);
         return new Spieler[i];
     }
 
 
-    public static String namensgebung(int i){
-        Scanner eingabe = new Scanner(System.in);
+    public static String namensgebung(int i, Scanner eingabe){
         System.out.println("Name des Spielers" + (i +1));
         return eingabe.nextLine();
     }
@@ -82,10 +81,11 @@ public class Gibspiel {
             System.out.println("4 - Mensch");
             int a = eingabe.nextInt();
             switch (a){
-                case 1 -> listeDerSpieler[i] = new ComputerSpielerEinfach(namensgebung(i));
-                case 2 -> listeDerSpieler[i] = new ComputerSpielerMittel(namensgebung(i));
-                case 3 -> listeDerSpieler[i] = new ComputerSpielerSchwer(namensgebung(i));
-                case 4 -> listeDerSpieler[i] = new MenschSpieler(namensgebung(i));
+                case 1 -> listeDerSpieler[i] = new ComputerSpielerEinfach(namensgebung(i, new Scanner(System.in)));
+                //case 1 -> listeDerSpieler[i] = new ComputerSpielerEinfach(namensgebung(i, eingabe));
+                case 2 -> listeDerSpieler[i] = new ComputerSpielerMittel(namensgebung(i, new Scanner(System.in)));
+                case 3 -> listeDerSpieler[i] = new ComputerSpielerSchwer(namensgebung(i, new Scanner(System.in)));
+                case 4 -> listeDerSpieler[i] = new MenschSpieler(namensgebung(i, new Scanner(System.in)));
                 default -> i--;
             }
         }
