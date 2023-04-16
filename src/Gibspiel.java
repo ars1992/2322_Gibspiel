@@ -65,7 +65,7 @@ public class Gibspiel {
                 i = eingabe.nextInt();
             } catch (InputMismatchException e){
                 eingabe.next();
-                System.out.println("Fehlerhafte Eingabe");
+                System.out.println("Fehlerhafte Eingabe\n" + e);
             }
         }while (i > spielerAnzahl || i <= 0);
         return new Spieler[i];
