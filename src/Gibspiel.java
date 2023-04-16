@@ -58,7 +58,7 @@ public class Gibspiel {
         Scanner eingabe = new Scanner(System.in);
         int i;
         do{
-            System.out.println("Wählen Sie die Anzahl der Spieler (0-" + spielerAnzahl + ") : ");
+            System.out.println("Wählen Sie die Anzahl der Spieler (1-" + spielerAnzahl + ") : ");
             i = eingabe.nextInt();
         }while (i > spielerAnzahl || i <= 0);
         return new Spieler[i];
