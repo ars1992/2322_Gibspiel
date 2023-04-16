@@ -9,5 +9,5 @@ public abstract class Spieler {
         return name;
     }
 
-    public abstract int steineSetzen();
+    public abstract int steineSetzen(int aktuelleAnzahlSteine);
 }

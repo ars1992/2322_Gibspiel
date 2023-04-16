@@ -25,37 +25,38 @@ public class Gibspiel {
      * - Spielbrett
      */
     public static int spielerAnzahl = 3;
-    public static Spielbrett spielbrett = new Spielbrett();
     public static void main(String[] args) {
-        Spieler[] spieler = gegenspielerBestimmen();
+        Scanner eingabe = new Scanner(System.in);
+        Spielbrett spielbrett = new Spielbrett();
+
+        Spieler[] spieler = gegenspielerBestimmen(eingabe);
 
         spielbrett.startSpiel();
         loop:
         while (true) {
             for (int i = 0; i < spieler.length; i++)
-                if (spielzug(spieler[i])) break loop;
+                if (spielzug(spieler[i], spielbrett)) break loop;
 
         }
     }
 
-    public static boolean spielzug(Spieler spieler1){
+    public static boolean spielzug(Spieler spieler, Spielbrett spielbrett){
         System.out.print("Steine auf dem Brett: ");
         System.out.println(spielbrett.getAktuelleAnzahlSteine());
 
         int anzahlSteine;
         do {
-            anzahlSteine = spieler1.steineSetzen();
+            anzahlSteine = spieler.steineSetzen(spielbrett.getAktuelleAnzahlSteine());
         } while ( ! spielbrett.macheZug( anzahlSteine ) );
 
         if (spielbrett.hatGewonnen()) {
-            System.out.println(spieler1.getName() + " hat gewonnen");
+            System.out.println(spieler.getName() + " hat gewonnen");
             return true;
         }
         return false;
     }
 
-    public static Spieler[] setzeSpielerAnzahl(){
-        Scanner eingabe = new Scanner(System.in);
+    public static Spieler[] setzeSpielerAnzahl(Scanner eingabe){
         int i;
         do{
             System.out.println("Wählen Sie die Anzahl der Spieler (0-" + spielerAnzahl + ") : ");
@@ -71,9 +72,8 @@ public class Gibspiel {
         return eingabe.nextLine();
     }
 
-    public static Spieler[] gegenspielerBestimmen(){
-        Scanner eingabe = new Scanner(System.in);
-        Spieler[] listeDerSpieler = setzeSpielerAnzahl();
+    public static Spieler[] gegenspielerBestimmen(Scanner eingabe){
+        Spieler[] listeDerSpieler = setzeSpielerAnzahl(eingabe);
         for (int i = 0; i < listeDerSpieler.length; i++) {
             System.out.println("Wählen Sie Spieler" + (i + 1));
             System.out.println("1 - KI Einfach");

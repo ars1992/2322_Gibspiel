@@ -5,11 +5,11 @@ public class ComputerSpielerEinfach extends Spieler{
         super(name);
     }
 
-    public int steineSetzen() {
+    public int steineSetzen(int akteuelleAnzahlSteine) {
         System.out.println("Am Zug: KI Einfach " + getName());
 
-        if(100 - Gibspiel.spielbrett.getAktuelleAnzahlSteine() < 10)
-            return 100 - Gibspiel.spielbrett.getAktuelleAnzahlSteine();
+        if(100 - akteuelleAnzahlSteine < 10)
+            return 100 - akteuelleAnzahlSteine;
         return (int) (Math.random() * 10 + 1);
     }
 }
