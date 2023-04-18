@@ -37,7 +37,6 @@ public class Gibspiel {
         while (true) {
             for (int i = 0; i < spieler.length; i++)
                 if (spielzug(spieler[i], spielbrett)) break loop;
-
         }
     }
 
